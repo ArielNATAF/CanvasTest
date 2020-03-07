@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">CanvasTest</string>
+    <string name="keep_tapping">Keep tapping.</string>
+    <string name="done">Done!</string>
+    <string name="getsize">GetSize</string>
+    <string name="size">Size</string>
+</resources>
