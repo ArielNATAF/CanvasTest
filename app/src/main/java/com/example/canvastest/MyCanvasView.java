@@ -19,6 +19,15 @@ public class MyCanvasView extends View {
     private int mBackgroundColor;
     private Canvas mExtraCanvas;
     private Bitmap mExtraBitmap;
+    private Double length;
+
+    private MyCanvasListener local;
+    public void setMyCanvasListener(MyCanvasListener myCanvasListener){
+        this.local = myCanvasListener;
+    }
+    public MyCanvasListener getMyCanvasListener(){
+        return this.local;
+    }
 
 
     MyCanvasView(Context context) {
@@ -89,6 +98,8 @@ public class MyCanvasView extends View {
             case MotionEvent.ACTION_DOWN:
                 touch_start(x, y);
                 invalidate();
+                mX0=x;
+                mY0=y;
                 break;
             case MotionEvent.ACTION_MOVE:
                 touch_move(x, y);
@@ -101,8 +112,11 @@ public class MyCanvasView extends View {
                 invalidate();
                 break;
         }
-        mX0=x;
-        mY0=y;
+
+        if(getMyCanvasListener()!=null){
+            getMyCanvasListener().canvasLength(
+                    2.0);
+        }
         return true;
     }
     private void touch_start(float x, float y) {
@@ -136,5 +150,9 @@ public class MyCanvasView extends View {
 
     public String getPouet() {
         return "popopo";
+    }
+
+    public interface MyCanvasListener {
+        void canvasLength(Double val);
     }
 }
